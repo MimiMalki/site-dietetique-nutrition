@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RecetteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -40,6 +42,18 @@ class Recette
 
     #[ORM\Column(length: 255)]
     private ?string $typeRegime = null;
+
+    #[ORM\ManyToMany(targetEntity: Allergie::class, mappedBy: 'recette')]
+    private Collection $allergies;
+
+    #[ORM\ManyToMany(targetEntity: Regime::class, mappedBy: 'recette')]
+    private Collection $regimes;
+
+    public function __construct()
+    {
+        $this->allergies = new ArrayCollection();
+        $this->regimes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -150,6 +164,60 @@ class Recette
     public function setTypeRegime(string $typeRegime): self
     {
         $this->typeRegime = $typeRegime;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Allergie>
+     */
+    public function getAllergies(): Collection
+    {
+        return $this->allergies;
+    }
+
+    public function addAllergy(Allergie $allergy): self
+    {
+        if (!$this->allergies->contains($allergy)) {
+            $this->allergies->add($allergy);
+            $allergy->addRecette($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAllergy(Allergie $allergy): self
+    {
+        if ($this->allergies->removeElement($allergy)) {
+            $allergy->removeRecette($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Regime>
+     */
+    public function getRegimes(): Collection
+    {
+        return $this->regimes;
+    }
+
+    public function addRegime(Regime $regime): self
+    {
+        if (!$this->regimes->contains($regime)) {
+            $this->regimes->add($regime);
+            $regime->addRecette($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRegime(Regime $regime): self
+    {
+        if ($this->regimes->removeElement($regime)) {
+            $regime->removeRecette($this);
+        }
 
         return $this;
     }
