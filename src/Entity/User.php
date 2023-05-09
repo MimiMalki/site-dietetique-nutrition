@@ -41,9 +41,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Allergie::class, mappedBy: 'user')]
     private Collection $allergies;
 
+    #[ORM\ManyToMany(targetEntity: Regime::class, mappedBy: 'user')]
+    private Collection $regimes;
+
     public function __construct()
     {
         $this->allergies = new ArrayCollection();
+        $this->regimes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -174,6 +178,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->allergies->removeElement($allergy)) {
             $allergy->removeUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Regime>
+     */
+    public function getRegimes(): Collection
+    {
+        return $this->regimes;
+    }
+
+    public function addRegime(Regime $regime): self
+    {
+        if (!$this->regimes->contains($regime)) {
+            $this->regimes->add($regime);
+            $regime->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRegime(Regime $regime): self
+    {
+        if ($this->regimes->removeElement($regime)) {
+            $regime->removeUser($this);
         }
 
         return $this;
