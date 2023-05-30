@@ -57,7 +57,7 @@ Encore
     })
 
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    .enableSassLoader()
     .copyFiles({
         from: './assets/images',
 
@@ -81,7 +81,37 @@ Encore
     //.enableIntegrityHashes(Encore.isProduction())
 
     // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
+    .autoProvidejQuery()
+    .enableSingleRuntimeChunk();
     ;
+module.exports = {
+    // ...
+    module: {
+        rules: [
+            {
+                test: /\.scss$/,
+                use: ['style-loader', 'css-loader', 'sass-loader'],
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                    },
+                },
+            },
+        ],
+        // plugins: [
+        //     new webpack.ProvidePlugin({
+        //         $: 'jquery',
+        //         jQuery: 'jquery',
+        //         'window.jQuery': 'jquery',
+        //         Popper: ['popper.js', 'default'],
+        //     }),
+        // ],
+    },
+};
 
 module.exports = Encore.getWebpackConfig();

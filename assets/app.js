@@ -7,5 +7,16 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
-// start the Stimulus application
-// import './bootstrap';
+import 'bootstrap';
+// import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/js/bootstrap.min.js';
+// // import 'bootstrap/js/src/collapse.js';
+$('.navbar-collapse').collapse();
+
+// import 'bootstrap/dist/js/bootstrap.js';
+// import 'bootstrap/js/src/collapse.js';
+// import 'jquery';
+// $(document).ready(function() {
+//     $('.navbar-collapse').collapse();
+//   });
