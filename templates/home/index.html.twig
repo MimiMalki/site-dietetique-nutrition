@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!
+{% endblock %}
+
+{% block body %}
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Dancing+Script:wght@400;500;600;700&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+		.hero-body {
+			background-image: url("build/images/bann.jpg");
+			min-height: auto;
+			background-size: cover;
+			padding: 35px;
+			font-family: 'Courgette', cursive;
+		}
+		.hero-body h1 {
+			text-align: center;
+			color: #c52126;
+			padding: 25px;
+		}
+		/* .elementor-row {
+			width: 100%;
+			display: flex;
+		} */
+
+	</style>
+	<section class="hero-body ">
+		<div class="elementor-column  elementor-inner-column">
+			<h1 class="elementor-heading-title elementor-size-default">
+				Mieux manger pour bien vivre</h1>
+			<h1 class="elementor-heading-title elementor-size-default">
+				Votre bien être commence par votre alimentation.
+			</h1>
+		</div>
+	</section>
+
+{% endblock %}
