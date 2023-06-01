@@ -1,3 +1,7 @@
-body {
+/* @import  'signup.css'; */
+/* body {
     background-color: lightgray;
-}
+} */
+body {
+    background-color: hsl(0, 0%, 98%)
+  }

@@ -1,9 +1,72 @@
-<a class="navbar-brand m-auto" href=""><img src='build/images/logo.png' class="brand-img" alt="" height="100px"></a>
+<!-- Navigation bar -->
+<!-- Main navigation container -->
+	<nav class="flex-no-wrap relative flex w-full items-center justify-between bg-neutral-100 py-2 shadow-md shadow-black/5 dark:bg-neutral-600 dark:shadow-black/10 lg:flex-wrap lg:justify-start lg:py-4" data-te-navbar-ref> <div
+		class="flex w-full flex-wrap items-center justify-between px-3">
+		<!-- Hamburger button for mobile view -->
+		<button
+			class="block border-0 bg-transparent px-2 text-neutral-500 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden" type="button" data-te-collapse-init data-te-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
+			<!-- Hamburger icon -->
+			<span class="[&>svg]:w-7">
+				<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="currentColor" class="h-7 w-7">
+					<path fill-rule="evenodd" d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z" clip-rule="evenodd"/>
+				</svg>
+			</span>
+		</button>
+
+		<!-- Collapsible navigation container -->
+		<div class="!visible hidden flex-grow basis-[100%] items-center lg:!flex lg:basis-auto" id="navbarSupportedContent1" data-te-collapse-item>
+		
+			<!-- Left navigation links -->
+				<ul class="list-style-none mr-auto flex flex-col pl-0 lg:flex-row" data-te-navbar-nav-ref> <li
+					class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
+					<!-- Dashboard link -->
+					<a class="text-danger hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-zinc-400" href="#" data-te-nav-link-ref>Accueil</a>
+				</li>
+				<!-- Recettes link -->
+				<li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
+					<a class="text-danger hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400" href="#" data-te-nav-link-ref>Recettes</a>
+				</li>
+				<!-- Projects link -->
+				{# <li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
+					<a class="text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400" href="#" data-te-nav-link-ref>Projects</a>
+				</li> #}
+				{% if app.user %}
+			<li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
+				<a class="nav-link" href="{{ path('app_logout') }}">Déconnexion
+					<i class="fa fa-sign-out"></i>
+				</a>
+			</li>
+		{% else %}
+			<li class="mb-4 lg:mb-0 lg:pr-2 {{ app.request.get('_route') == 'app_login' ? 'active' : '' }}" data-te-nav-item-ref>
+				<a class="text-danger hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400" href="{{ path('app_login') }}" data-te-nav-link-ref>Connexion</a>
+			</li>
+			{% endif %}
+			</ul>
+		</div>
+
+		<!-- Right elements -->
+		<div
+			class="relative flex items-center">
+			<!-- Second dropdown container -->
+			<div
+				class="relative" data-te-dropdown-ref>
+					<!-- Logo -->
+				<a class="mb-4 mr-2 mt-3 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:mb-0 lg:mt-0" href="#">
+					<img src='build/images/logo.png' style="height: 90px" alt="" loading="lazy"/>
+				</a>
+				<!-- Second dropdown menu -->
+			</div>
+		</div>
+	</div>
+</nav>
+
+
+{# <a class="navbar-brand m-auto" href=""><img src='build/images/logo.png' class="brand-img" alt="" height="100px"></a>
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobileMenu" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle navigation">
 	<span class="navbar-toggler-icon"></span>
-</button>
+</button> #}
 
-<div class="collapse navbar-collapse" id="mobileMenu">
+{# <div class="collapse navbar-collapse" id="mobileMenu">
 	<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 		<li class="nav-item {{ app.request.get('_route') == 'home' ? 'active' : '' }}">
 			<a class="nav-link" href="">Accueil</a>
@@ -23,4 +86,4 @@
 			</li>
 		{% endif %}
 	</ul>
-</div>
+</div> #}
