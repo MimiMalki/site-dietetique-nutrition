@@ -5,7 +5,7 @@
 
 {% block body %}
 	<style>
-		@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Dancing+Script:wght@400;500;600;700&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=Courgette &family=Dancing+Script:wght@400;500;600;700&family=Noto+Sans:ital, wght@0, 100;0, 200;0, 300;0, 400;0, 500;0, 700;0, 800;0, 900;1, 100;1, 200;1, 300;1, 400;1, 500;1, 600;1, 700;1, 800;1, 900&display=swap');
 
 		.hero-body {
 			background-image: url("build/images/bann.jpg");
@@ -14,69 +14,179 @@
 			padding: 35px;
 			font-family: 'Courgette', cursive;
 		}
-		 h1 , h3 {
+		h1,
+		h3 {
 			text-align: center;
 			color: #c52126;
 			/* padding: 25px; */
 			font-family: 'Courgette', cursive;
 		}
-		span{
+		/* span{
 			color:#4e8016;
-		}
+		} */
 		/* .elementor-row {
 			width: 100%;
 			display: flex;
 		} */
-
 	</style>
-<div class="relative overflow-hidden bg-cover bg-no-repeat">
+	<div
+		class="relative overflow-hidden bg-cover bg-no-repeat">
 
-    <!-- Section: Design Block -->
-    <section class="mb-32">
+		<!-- Section: Design Block -->
+		<section class="mb-32">
 
-      <div class="relative overflow-hidden bg-no-repeat bg-cover" style="background-position: 50%; background-image: url('build/images/bann.jpg'); height: 400px;"></div>
+			<div class="relative overflow-hidden bg-no-repeat bg-cover" style="background-position: 50%; background-image: url('build/images/bann.jpg'); height: 400px;"></div>
 
-      <div class="container mx-auto px-6 md:px-12 xl:px-32">
-        <div class="text-center text-gray-800">
-          <div class="block rounded-lg shadow-lg px-6 py-12 md:py-16 md:px-12" style="margin-top: -170px; background: hsla(0, 0%, 100%, 0.7); backdrop-filter: blur(30px);">
-            <h1 class="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12">Mieux manger pour bien vivre <br /><br /><span class="text-red-600"  style="color: #79ac23" >Votre bien être commence par votre alimentation.</span></h1>
-            <a class="inline-block px-7 py-3 mb-2 md:mb-0 mr-0 md:mr-2 bg-red-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" href="{{ path('app_login') }}" role="button">Se connecter</a>
-            <a class="inline-block px-7 py-3  font-medium text-sm leading-snug bg-transparent text-red-600 font-medium text-xs leading-tight uppercase rounded hover:text-red-700
-			 hover:bg-gray-100 focus:bg-gray-100 
-			focus:outline-none focus:ring-0 active:bg-gray-200 
-			transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" href="{{ path('app_recette_index') }}" role="button">Voir les Recettes</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Section: Design Block -->
-  
-</div>
-
-	<!-- Hero section with background image, heading, subheading and button -->
-{# <div class="relative overflow-hidden bg-cover bg-no-repeat" style="
-				background-image: url('build/images/bann.jpg');
-				height: 450px;
-				
-		    ">
-	<div class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed" style="">
-		<div class="flex h-full items-center justify-center">
-			<div class="px-6 text-center text-white md:px-12">
-				<h1 class="mb-6 text-5xl font-bold">Mieux manger pour bien vivre</h1>
-				<h1 class="mb-6 text-5xl font-bold">Votre bien être commence par votre alimentation.</h1>
-				
+			<div class="container mx-auto px-6 md:px-12 xl:px-32">
+				<div class="text-center text-gray-800">
+					<div class="block rounded-lg shadow-lg px-6 py-12 md:py-16 md:px-12" style="margin-top: -170px; background: hsla(0, 0%, 100%, 0.7); backdrop-filter: blur(30px);">
+						<h1 class="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12">Mieux manger pour bien vivre
+							<br/><br/><span style="color: #79ac23">Votre bien être commence par votre alimentation.</span>
+						</h1>
+						<a class="inline-block px-7 py-3 mb-2 md:mb-0 mr-0 md:mr-2 bg-red-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" href="{{ path('app_login') }}" role="button">Se connecter</a>
+						<a class="inline-block px-7 py-3  font-medium text-sm leading-snug bg-transparent text-red-600 font-medium text-xs leading-tight uppercase rounded hover:text-red-700
+						hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" href="{{ path('app_recette_index') }}" role="button">Voir les Recettes</a>
+					</div>
+				</div>
 			</div>
-		</div>
+		</section>
+		<!-- Section: Design Block -->
+
 	</div>
-</div> #}
+
+	<!-- Container for demo purpose -->
+
+	<div
+		class="container xl:px-34">
+		<!-- Section: Design Block -->
+		<section class="mb-32">
+			<div class="flex flex-wrap">
+				<div class="mb-12 w-full shrink-0 grow-0 basis-auto lg:mb-0 lg:w-5/12">
+					<div class="flex lg:py-12">
+						<img src="build/images/img1.jpg" class="w-full rounded-lg shadow-lg dark:shadow-black/20 lg:ml-[50px] z-[10]" alt="image"/>
+					</div>
+				</div>
+				<div class="w-full shrink-0 grow-0 basis-auto lg:w-7/12">
+					<div class="flex h-full items-center rounded-lg bg-danger-600 p-6 text-center text-white lg:pl-12 lg:text-left">
+						<div class="lg:pl-12">
+							<h2 class="mb-6 text-3xl font-bold">
+								À propos
+							</h2>
+							<p class="mb-6 pb-2 lg:pb-0">
+								Bienvenue sur mon site ! Je suis Sandrine Coupart, une nutritionniste diététicienne passionnée par 
+								la santé et le bien-être. Mon objectif est d'aider mes clients à atteindre 
+								une alimentation équilibrée et à adopter des habitudes de vie saines.
+							</p>
+							<button type="button" class="rounded-full border-2 border-neutral-50 px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-100 hover:bg-opacity-10 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200" data-te-ripple-init data-te-ripple-color="light">
+								Savoir plus
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Section: Design Block -->
+	</div>
+
+	<!-- Container for demo purpose -->
+	<div
+		class="container my-24 mx-auto md:px-6">
+		<!-- Section: Design Block -->
+		<section class="mb-32 text-center">
+			<div class="" style="background-color: #79ac23;color:#f4f5f6;">
+				<h2 class="mb-6 text-3xl font-bold ">
+					Mes services
+				</h2>
+			</div>
+			<div class="grid gap-x-6 md:grid-cols-3 lg:gap-x-12">
+
+				<div class="mb-12 md:mb-0">
+					<div class="mb-6 inline-block rounded-md bg-100 p-4 " style="background-color: #79ac23">
+						<i class="fa-solid fa-apple-whole" style="color: #f4f5f6;"></i>
+					</div>
+					<h5 class="mb-4 text-lg font-bold">Consultations individuelles</h5>
+					<p class="text-neutral-500 dark:text-neutral-300">
+						Lors de nos consultations individuelles, nous discuterons de vos objectifs de santé et de vos préoccupations spécifiques. Je procéderai à une évaluation détaillée de vos habitudes alimentaires, de votre mode de vie et de votre historique médical afin de développer un plan alimentaire adapté à vos besoins. Je vous fournirai des conseils pratiques et des recommandations personnalisées pour vous aider à atteindre vos objectifs nutritionnels.
+					</p>
+				</div>
+
+				<div class="mb-12 md:mb-0">
+					<div class="mb-6 inline-block rounded-md p-4 text-white" style="background-color: #79ac23">
+						<i class="fa-solid fa-comment-medical fa-xl" style="color: #ffffff;"></i>
+					</div>
+					<h5 class="mb-4 text-lg font-bold">Suivi et coaching</h5>
+					<p class="text-neutral-500 dark:text-neutral-300">
+						Le suivi régulier est essentiel pour maintenir la motivation et ajuster votre plan alimentaire en fonction de vos progrès. Je vous proposerai des séances de suivi pour évaluer vos résultats, répondre à vos questions et apporter les ajustements nécessaires à votre plan. Je serai là pour vous soutenir tout au long de votre parcours et vous aider à surmonter les défis éventuels.
+					</p>
+				</div>
+
+				<div class="mb-12 md:mb-0">
+					<div class="mb-6 inline-block rounded-md bg-primary-100 p-4 " style="background-color: #79ac23">
+						<i class="fa-solid fa-weight-scale fa-xl" style="color: #f5f5f5;" height="1em"></i>
+						{# <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewbox="0 0 512 512" class="h-6 w-6"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M128 176a128 128 0 1 1 256 0 128 128 0 1 1 -256 0zM391.8 64C359.5 24.9 310.7 0 256 0S152.5 24.9 120.2 64H64C28.7 64 0 92.7 0 128V448c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H391.8zM296 224c0-10.6-4.1-20.2-10.9-27.4l33.6-78.3c3.5-8.1-.3-17.5-8.4-21s-17.5 .3-21 8.4L255.7 184c-22 .1-39.7 18-39.7 40c0 22.1 17.9 40 40 40s40-17.9 40-40z"/></svg> #}
+					</div>
+					<h5 class="mb-4 text-lg font-bold">Ateliers et éducation nutritionnelle</h5>
+					<p class="text-neutral-500 dark:text-neutral-300">
+						Je propose également des ateliers culinaires et des sessions d'éducation nutritionnelle pour les groupes. Ces séances interactives vous permettront d'acquérir des connaissances pratiques sur la nutrition, de développer des compétences culinaires et d'échanger des conseils et des astuces avec d'autres participants
+					</p>
+				</div>
+			</div>
+			<div class="grid gap-x-12 md:grid-cols-2  ">
+				<div class="mb-12 md:mb-0 ">
+					<div class="mb-6 inline-block rounded-md bg-primary-100 p-4" style="background-color: #79ac23">
+						<i class="fa-solid fa-file-waveform fa-xl" style="color: #ffffff;"></i>
+						{# <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewbox="0 0 448 512" class="h-6 w-6"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M96 0C60.7 0 32 28.7 32 64V288H144c6.1 0 11.6 3.4 14.3 8.8L176 332.2l49.7-99.4c2.7-5.4 8.3-8.8 14.3-8.8s11.6 3.4 14.3 8.8L281.9 288H352c8.8 0 16 7.2 16 16s-7.2 16-16 16H272c-6.1 0-11.6-3.4-14.3-8.8L240 275.8l-49.7 99.4c-2.7 5.4-8.3 8.8-14.3 8.8s-11.6-3.4-14.3-8.8L134.1 320H32V448c0 35.3 28.7 64 64 64H352c35.3 0 64-28.7 64-64V160H288c-17.7 0-32-14.3-32-32V0H96zM288 0V128H416L288 0z"/>
+																		</svg> #}
+					</div>
+					<h5 class="mb-4 text-lg font-bold">Gestion des problèmes de santé spécifiques</h5>
+					<p class="text-neutral-500 dark:text-neutral-300">
+						Si vous souffrez de conditions médicales telles que le diabète, les troubles digestifs, les allergies alimentaires ou les maladies cardiovasculaires, je peux vous aider à gérer votre alimentation de manière appropriée. En travaillant en étroite collaboration avec vous et votre équipe de soins de santé, je développerai un plan nutritionnel adapté à votre condition spécifique
+					</p>
+				</div>
+
+				<div class="mb-12 md:mb-0">
+					<div class="mb-6 inline-block rounded-md -100 p-4 " style="background-color: #79ac23">
+						<i class="fa-solid fa-apple-whole" style="color: #f4f5f6;"></i>
+						{# <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-6 w-6">
+																			<path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/>
+																		</svg> #}
+					</div>
+					<h5 class="mb-4 text-lg font-bold">Plans de repas personnalisés
+					</h5>
+					<p class="text-neutral-500 dark:text-neutral-300">
+						Si vous recherchez une approche plus structurée, je peux élaborer des plans de repas personnalisés en fonction de vos préférences alimentaires et de vos besoins nutritionnels. Ces plans vous fourniront des idées de repas équilibrés, des recettes saines et des conseils pour une préparation facile des repas.
+					</p>
+				</div>
+			</div>
+		</section>
+		<!-- Section: Design Block -->
+	</div>
+	<!-- Container for demo purpose -->
+<!-- Container for demo purpose -->
+	<!-- Hero section with background image, heading, subheading and button -->
+	{# <div class="relative overflow-hidden bg-cover bg-no-repeat" style="
+									background-image: url('build/images/bann.jpg');
+									height: 450px;
+									
+							    ">
+						<div class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed" style="">
+							<div class="flex h-full items-center justify-center">
+								<div class="px-6 text-center text-white md:px-12">
+									<h1 class="mb-6 text-5xl font-bold">Mieux manger pour bien vivre</h1>
+									<h1 class="mb-6 text-5xl font-bold">Votre bien être commence par votre alimentation.</h1>
+									
+								</div>
+							</div>
+						</div>
+					</div> #}
 	{# <section class="hero-body ">
-		<div class="elementor-column  elementor-inner-column">
-			<h1 class="elementor-heading-title elementor-size-default">
-				Mieux manger pour bien vivre</h1>
-			<h1 class="elementor-heading-title elementor-size-default">
-				Votre bien être commence par votre alimentation.
-			</h1>
-		</div>
-	</section> #}
+							<div class="elementor-column  elementor-inner-column">
+								<h1 class="elementor-heading-title elementor-size-default">
+									Mieux manger pour bien vivre</h1>
+								<h1 class="elementor-heading-title elementor-size-default">
+									Votre bien être commence par votre alimentation.
+								</h1>
+							</div>
+						</section> #}
 
 {% endblock %}
