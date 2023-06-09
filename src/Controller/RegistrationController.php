@@ -40,7 +40,20 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+          // Get selected regimes and allergies from the form
+          $selectedRegimes = $form->get('regimes')->getData();
+          $selectedAllergies = $form->get('allergies')->getData();
 
+          // Add the user to each selected regime
+          foreach ($selectedRegimes as $regime) {
+              $regime->addUser($user);
+          }
+
+          // Add the user to each selected allergy
+          foreach ($selectedAllergies as $allergie) {
+              $allergie->addUser($user);
+          }
+          $user->setRoles(['ROLE_PATIENT']);
             $entityManager->persist($user);
             $entityManager->flush();
 

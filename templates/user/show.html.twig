@@ -39,6 +39,18 @@
                 <th>IsVerified</th>
                 <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
             </tr>
+            {% for allergie in user.allergies %}
+            <tr>
+            <th>Allergies</th>
+            <td>{{ allergie.nom}}</td>
+        </tr>
+    {% endfor %}
+    {% for regime in user.regimes %}
+        <tr>
+        <th>Regimes</th>
+        <td>{{ regime.nom }}</td>
+    </tr>
+{% endfor %}
         </tbody>
     </table>
 

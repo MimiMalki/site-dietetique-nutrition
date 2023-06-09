@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GalleryRecetteController!
+{% endblock %}
+
+{% block body %}
+	<div class="texte text-center">
+		<h1 class="title">DÉCOUVREZ LES RECETTES</h1>
+	</div>
+	<div class="container mx-auto px-5 py-2 lg:px-32 lg:pt-12">
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+			{% for recette in recettes %}
+				<div class="mb-6 rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+					<a href="{{ path('app_gallery_recette_show', { 'id': recette.id }) }}">
+						<div class="flex justify-center">
+							<img src="{{ vich_uploader_asset(recette, 'imageFile') }}" alt="{{ recette.imageName }}" class="card shadow-sm max-h-40 object-contain"/>
+						</div>
+						<div class="p-6">
+							<h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+								{{ recette.titre }}
+							</h5>
+						</div>
+						<div class="flex justify-between items-center">
+							<div class="flex flex-col items-center">
+								<i class="fa-solid fa-stopwatch fa-lg"></i><br>
+								<p>Cuisson</p>
+								<p>{{ recette.tempsCuisson ? recette.tempsCuisson|date('H:i') : '' }}</p>
+							</div>
+							<div class="flex flex-col items-center">
+								<i class="fa-solid fa-hourglass-half fa-lg"></i><br>
+								<p>Préparation</p>
+								<p>{{ recette.tempsPrepation ? recette.tempsPrepation|date('H:i') : '' }}</p>
+							</div>
+							<div class="flex flex-col items-center">
+								<i class="fa-solid fa-clock fa-lg"></i><br>
+								<p>Repos</p>
+								<p>{{ recette.tempsRepos ? recette.tempsRepos|date('H:i') : '' }}</p>
+							</div>
+						</div>
+						<!-- Afficher les notes liées à la recette -->
+						{# {% for avis in recetteNotes[recette.id] %} #}
+							{# <div class="rating">
+								<span class="star" data-rating="1">&#9733;</span>
+								<span class="star" data-rating="2">&#9733;</span>
+								<span class="star" data-rating="3">&#9733;</span>
+								<span class="star" data-rating="4">&#9733;</span>
+								<span class="star" data-rating="5">&#9733;</span>
+								<input type="hidden" name="rating" value="{{ avis.note }}"/>
+							</div> #}
+							{# <p>Note: {{ avis.note }}</p>
+						{% endfor %} #}
+<!-- Afficher la moyenne des notes en format d'étoiles -->
+   {% set filledStars = 0 %}
+{% set emptyStars = 5 %}
+
+{% if recette.avis is not empty %}
+    {% set totalNotes = 0 %}
+    {% for avis in recette.avis %}
+        {% set totalNotes = totalNotes + avis.note %}
+    {% endfor %}
+    {% set average = totalNotes / recette.avis|length %}
+    {% set filledStars = average|round %}
+    {% set emptyStars = 5 - filledStars %}
+{% endif %}
+
+<div class="rating">
+    {% for i in 1..filledStars %}
+        <span class="star"><i class="fas fa-star"></i></span>
+    {% endfor %}
+    {% for i in 1..emptyStars %}
+        <span class="star"><i class="far fa-star"></i></span>
+    {% endfor %}
+</div>
+
+</div>
+
+{% endfor %}
+{% endblock %}

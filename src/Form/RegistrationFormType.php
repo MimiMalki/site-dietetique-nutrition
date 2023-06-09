@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Entity\Allergie;
+use App\Entity\Regime;
 use Symfony\Component\Form\AbstractType;
 
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -63,6 +65,16 @@ class RegistrationFormType extends AbstractType
                     // message affiché si l'utilisateur saisit une adresse email incorrecte
                 ]),
             ],
+        ])
+        ->add('allergies', EntityType::class, [
+            'class' => Allergie::class,
+            'multiple' => true,
+            'expanded' => true,
+        ])
+        ->add('regimes', EntityType::class, [
+            'class' => Regime::class,
+            'multiple' => true,
+            'expanded' => false,
         ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,

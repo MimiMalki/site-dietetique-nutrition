@@ -10,11 +10,10 @@
 {% block body %}
 	<!-- Container for demo purpose -->
 	<div
-		class="container my-24 px-6 mx-auto">
-
+		class="container">
 		<!-- Section: Design Block -->
 		<section class="mb-32 text-gray-800 text-center lg:text-left">
-			<div class="px-6 py-12 md:px-12" style="background-color: hsl(0, 0%, 96%)">
+			<div class=" md:px-12" style="">
 				<div class="grid lg:grid-cols-2 gap-12 flex items-center">
 					<div class="mt-12 lg:mt-0">
 						<h1 class="text-5xl font-bold tracking-tight leading-tight mb-12">
@@ -64,6 +63,31 @@
 										{{ form_widget(registrationForm.plainPassword, { 'attr': {'class': 'peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0'} }) }}
 										<label for="exampleInput123" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary" placeholder="Mot de passe">Mot de passe
 										</label>
+									</div>
+									<!--Allergies input-->
+									<div class="relative mb-6" data-te-input-wrapper-init>
+									<label for="exampleInput123" class="pointer-events-none left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary" placeholder="Allergies">Allergies
+										</label>
+										{{ form_widget(registrationForm.allergies, {
+											'attr': {
+												'class': 'peer block min-h-[auto] w-full rounded border-0 bg-transparent px-5 py-[0.5rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0',
+												'name': 'allergies[]',
+												'multiple': 'multiple'
+											}
+										}) }}
+										
+									</div>
+									{# <div class="relative mb-6" data-te-input-wrapper-init>
+																			{{ form_widget(registrationForm.allergies, { 'attr': {'class': 'peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0'} }) }}
+																			<label for="exampleInput123" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary" placeholder="Allergies">Allergies
+																			</label>
+																		</div> #}
+									<!--Regimes input-->
+									<div class="relative" data-te-input-wrapper-init>
+									<label for="exampleInput123" class="pointer-events-none  left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary" placeholder="Allergies">Régimes
+										</label>
+										{{ form_widget(registrationForm.regimes, { 'attr': {'class': 'peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0'} }) }}
+										
 									</div>
 									<div class="form-check flex justify-center mb-6">
 										{{ form_widget(registrationForm.agreeTerms, { 'attr': {'class': 'relative float-left -ml-[1.5rem] mr-[6px] h-[1.125rem] w-[1.125rem] border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0'} }) }}

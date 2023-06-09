@@ -7,8 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: RecetteRepository::class)]
+#[Vich\Uploadable]
+
 class Recette
 {
     #[ORM\Id]
@@ -18,6 +22,12 @@ class Recette
 
     #[ORM\Column(length: 255)]
     private ?string $titre = null;
+
+    #[Vich\UploadableField(mapping: 'recette_images', fileNameProperty: 'imageName')]
+    private ?File $imageFile = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $imageName = null;
 
     #[ORM\Column(length: 255)]
     private ?string $description = null;
@@ -37,11 +47,11 @@ class Recette
     #[ORM\Column(length: 255)]
     private ?string $etapes = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $allergenes = null;
+    // #[ORM\Column(length: 255)]
+    // private ?string $allergenes = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $typeRegime = null;
+    // #[ORM\Column(length: 255)]
+    // private ?string $typeRegime = null;
 
     #[ORM\ManyToMany(targetEntity: Allergie::class, mappedBy: 'recette')]
     private Collection $allergies;
@@ -49,10 +59,17 @@ class Recette
     #[ORM\ManyToMany(targetEntity: Regime::class, mappedBy: 'recette')]
     private Collection $regimes;
 
+    #[ORM\Column]
+    private ?bool $accessiblePatient = null;
+
+    #[ORM\OneToMany(mappedBy: 'recette', targetEntity: Avis::class)]
+    private Collection $avis;
+
     public function __construct()
     {
         $this->allergies = new ArrayCollection();
         $this->regimes = new ArrayCollection();
+        $this->avis = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -70,6 +87,28 @@ class Recette
         $this->titre = $titre;
 
         return $this;
+    }
+
+    public function setImageFile(?File $imageFile = null): self
+    {
+        $this->imageFile = $imageFile;
+        return $this;
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageName(?string $imageName): self
+    {
+        $this->imageName = $imageName;
+        return $this;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
     }
 
     public function getDescription(): ?string
@@ -144,29 +183,29 @@ class Recette
         return $this;
     }
 
-    public function getAllergenes(): ?string
-    {
-        return $this->allergenes;
-    }
+    // public function getAllergenes(): ?string
+    // {
+    //     return $this->allergenes;
+    // }
 
-    public function setAllergenes(string $allergenes): self
-    {
-        $this->allergenes = $allergenes;
+    // public function setAllergenes(string $allergenes): self
+    // {
+    //     $this->allergenes = $allergenes;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function getTypeRegime(): ?string
-    {
-        return $this->typeRegime;
-    }
+    // public function getTypeRegime(): ?string
+    // {
+    //     return $this->typeRegime;
+    // }
 
-    public function setTypeRegime(string $typeRegime): self
-    {
-        $this->typeRegime = $typeRegime;
+    // public function setTypeRegime(string $typeRegime): self
+    // {
+    //     $this->typeRegime = $typeRegime;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     /**
      * @return Collection<int, Allergie>
@@ -220,5 +259,51 @@ class Recette
         }
 
         return $this;
+    }
+
+    public function isAccessiblePatient(): ?bool
+    {
+        return $this->accessiblePatient;
+    }
+
+    public function setAccessiblePatient(bool $accessiblePatient): self
+    {
+        $this->accessiblePatient = $accessiblePatient;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Avis>
+     */
+    public function getAvis(): Collection
+    {
+        return $this->avis;
+    }
+
+    public function addAvi(Avis $avi): self
+    {
+        if (!$this->avis->contains($avi)) {
+            $this->avis->add($avi);
+            $avi->setRecette($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvi(Avis $avi): self
+    {
+        if ($this->avis->removeElement($avi)) {
+            // set the owning side to null (unless already changed)
+            if ($avi->getRecette() === $this) {
+                $avi->setRecette(null);
+            }
+        }
+
+        return $this;
+    }
+    public function __toString()
+    {
+        return $this->titre ;
     }
 }

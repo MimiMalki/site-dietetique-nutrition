@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recette
+{% endblock %}
+
+
+
+
+{% block body %}
+<style>
+
+.rating {
+    text-align: center;
+    color: black;
+}
+.star {
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.star.active {
+    color: gold;
+}
+#form_note {
+  display: none;
+}#form_note {
+  visibility: hidden;
+}
+</style>
+
+	<h1>Recette</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ recette.id }}</td>
+			</tr>
+			<tr>
+				<th>Titre</th>
+				<td>{{ recette.titre }}</td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td>{{ recette.description }}</td>
+			</tr>
+			<tr>
+				<th>TempsPrepation</th>
+				<td>{{ recette.tempsPrepation ? recette.tempsPrepation|date('H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>TempsRepos</th>
+				<td>{{ recette.tempsRepos ? recette.tempsRepos|date('H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>TempsCuisson</th>
+				<td>{{ recette.tempsCuisson ? recette.tempsCuisson|date('H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Ingredients</th>
+				<td>{{ recette.ingredients }}</td>
+			</tr>
+			<tr>
+				<th>Etapes</th>
+				<td>{{ recette.etapes }}</td>
+			</tr>
+
+		</tbody>
+	</table>
+
+	{{ form_start(form, { 'action': path('app_gallery_recette_show', { 'id': recette.id }) }) }}
+	{{ form_widget(form.commentaire) }}
+	<div class="rating">
+		<span class="star" data-rating="1">&#9733;</span>
+		<span class="star" data-rating="2">&#9733;</span>
+		<span class="star" data-rating="3">&#9733;</span>
+		<span class="star" data-rating="4">&#9733;</span>
+		<span class="star" data-rating="5">&#9733;</span>
+		{{ form_widget(form.note, {'id': 'form_note'}) }}
+	</div>
+	<button type="submit">Soumettre l'avis</button>
+	{{ form_end(form) }}
+
+<script>
+
+// Sélectionnez toutes les étoiles
+const stars = document.querySelectorAll('.star');
+// Récupérez le champ de note du formulaire
+const noteField = document.getElementById('form_note');
+
+  // Ajoutez un écouteur d'événement à chaque étoile
+stars.forEach(star => {
+    star.addEventListener('click', () => {
+      // Récupérez la valeur de l'étoile cliquée
+    const rating = star.dataset.rating;
+
+      // Mettez à jour l'affichage des étoiles
+    updateStars(rating);
+
+      // Enregistrez la valeur de la note ou effectuez toute autre action souhaitée
+    saveRating(rating);
+    });
+});
+
+  // Fonction pour mettre à jour l'affichage des étoiles
+function updateStars(rating) {
+    stars.forEach(star => {
+if (star.dataset.rating <= rating) {
+        star.classList.add('active');
+} else {
+        star.classList.remove('active');
+}
+    });
+}
+</script>
+{% endblock %}

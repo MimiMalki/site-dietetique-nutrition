@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Recette;
+use App\Entity\Regime;
+use App\Entity\Allergie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -21,6 +23,23 @@ class RecetteRepository extends ServiceEntityRepository
         parent::__construct($registry, Recette::class);
     }
 
+    public function saveRecette(Recette $recette)
+    {
+        $this->_em->persist($recette);
+        $this->_em->flush();
+    }
+
+    public function saveRegime(Regime $regime)
+    {
+        $this->_em->persist($regime);
+        $this->_em->flush();
+    }
+
+    public function saveAllergie(Allergie $allergie)
+    {
+        $this->_em->persist($allergie);
+        $this->_em->flush();
+    }
     public function save(Recette $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);

@@ -13,8 +13,8 @@ class RegimeType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('user')
-            ->add('recette')
+            // ->add('user')
+            // ->add('recette')
         ;
     }
 

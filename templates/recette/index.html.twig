@@ -3,9 +3,64 @@
 {% block title %}Recette index{% endblock %}
 
 {% block body %}
-    <h1>Recette index</h1>
-
-    <table class="table">
+	<h1>Liste des recettes</h1>
+	<a href="{{ path('app_recette_new') }}">Create new</a>
+	<div class="flex flex-col">
+		<div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+			<div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+				<div class="overflow-hidden">
+					<table class="min-w-full text-center text-sm font-light">
+						<thead class="border-b font-medium dark:border-neutral-500">
+							<tr>
+								<th scope="col" class="px-6 py-4">Id</th>
+								<th scope="col" class="px-6 py-4">Titre</th>
+								<th scope="col" class="px-6 py-4">Image</th>
+								<th scope="col" class="px-6 py-4">Temps de Prépation</th>
+								<th scope="col" class="px-6 py-4">Temps de Repos</th>
+								<th scope="col" class="px-6 py-4">Temps de Cuisson</th>
+								<th scope="col" class="px-6 py-4">Type de Régimes</th>
+                                <th scope="col" class="px-6 py-4">Allergies</th>
+								<th scope="col" class="px-6 py-4">Actions</th>
+							</tr>
+						</thead>
+                        <tbody>
+							{% for recette in recettes %}
+								<tr class="border-b dark:border-neutral-500">
+									<td class="whitespace-nowrap px-6 py-4 font-medium">
+										{{ recette.id }}
+									</td>
+									<td class="whitespace-nowrap px-6 py-4">{{ recette.titre }}</td>
+									<td class="whitespace-nowrap px-6 py-4"><img src="{{ vich_uploader_asset(recette, 'imageFile') }}" alt="{{ recette.imageName }}" width="100px 100px"></td>
+									<td class="whitespace-nowrap px-6 py-4">{{ recette.tempsPrepation ? recette.tempsPrepation|date('H:i') : '' }}</td>
+									<td class="whitespace-nowrap px-6 py-4">{{ recette.tempsRepos ? recette.tempsRepos|date('H:i') : '' }}</td>
+									<td class="whitespace-nowrap px-6 py-4">{{ recette.tempsCuisson ? recette.tempsCuisson|date('H:i') : '' }}</td>
+									{% for regime in recette.regimes %}
+										<td class="whitespace-nowrap px-6 py-4">{{ regime.nom }}</td>
+									{% endfor %}
+									{% for allergie in recette.allergies %}
+										<td class="whitespace-nowrap px-6 py-4">{{ allergie.nom }}</td>
+									{% endfor %}
+									<td>
+										<a class="mb-2 px-6 py-2.5 text-xl text-light" href="{{ path('app_recette_show', {'id': recette.id}) }}">
+											<i class="fa-solid fa-eye"></i>
+										</a>
+										<a  class="mb-2 px-6 py-2.5 text-xl text-success" href="{{ path('app_recette_edit', {'id': recette.id}) }}">
+											<i class="fa-solid fa-pen-to-square"></i>
+										</a>
+										{# <a  class="mb-2 px-6 py-2.5 text-xl text-danger" href="{{ path('app_recette_delete', {'id': recette.id}) }}">
+											<i class="fa-solid fa-trash"></i>
+										</a> #}
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+    {# <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
@@ -16,8 +71,8 @@
                 <th>TempsCuisson</th>
                 <th>Ingredients</th>
                 <th>Etapes</th>
-                <th>Allergenes</th>
-                <th>TypeRegime</th>
+                <th scope="col" class="px-6 py-4">Régimes</th>
+				<th scope="col" class="px-6 py-4">Allergies</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -32,8 +87,12 @@
                 <td>{{ recette.tempsCuisson ? recette.tempsCuisson|date('H:i:s') : '' }}</td>
                 <td>{{ recette.ingredients }}</td>
                 <td>{{ recette.etapes }}</td>
-                <td>{{ recette.allergenes }}</td>
-                <td>{{ recette.typeRegime }}</td>
+                {% for regime in recette.regimes %}
+										<td class="whitespace-nowrap px-6 py-4">{{ regime.nom }}</td>
+									{% endfor %}
+									{% for allergie in recette.allergies %}
+										<td class="whitespace-nowrap px-6 py-4">{{ allergie.nom }}</td>
+									{% endfor %}
                 <td>
                     <a href="{{ path('app_recette_show', {'id': recette.id}) }}">show</a>
                     <a href="{{ path('app_recette_edit', {'id': recette.id}) }}">edit</a>
@@ -45,7 +104,4 @@
             </tr>
         {% endfor %}
         </tbody>
-    </table>
-
-    <a href="{{ path('app_recette_new') }}">Create new</a>
-{% endblock %}
+    </table> #}
