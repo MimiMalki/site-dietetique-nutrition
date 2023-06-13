@@ -66,45 +66,38 @@ class RecetteController extends AbstractController
     //     ]);
     // }
     public function new(Request $request, EntityManagerInterface $entityManager): Response
-{
-    $recette = new Recette();
-    $form = $this->createForm(RecetteType::class, $recette);
-    $form->handleRequest($request);
+    {
+        $recette = new Recette();
+        $form = $this->createForm(RecetteType::class, $recette);
+        $form->handleRequest($request);
 
-    
-    if ($form->isSubmitted() && $form->isValid()) {
-      
-        // Récupérer les régimes et les allergies sélectionnés depuis le formulaire
-        $selectedRegimes = $form->get('regimes')->getData();
-        $selectedAllergies = $form->get('allergies')->getData();
-       
-        // Sauvegarder la recette
-        $entityManager->persist($recette);
-        $entityManager->flush();
 
-        // Ajouter la recette à chaque régime sélectionné
-        foreach ($selectedRegimes as $regime) {
-            $regime->addRecette($recette);
-            $entityManager->persist($regime);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Récupérer les régimes et les allergies sélectionnés depuis le formulaire
+            $selectedRegimes = $form->get('regimes')->getData();
+            $selectedAllergies = $form->get('allergies')->getData();
+            // Sauvegarder la recette
+            $entityManager->persist($recette);
+            $entityManager->flush();
+            // Ajouter la recette à chaque régime sélectionné
+            foreach ($selectedRegimes as $regime) {
+                $regime->addRecette($recette);
+                $entityManager->persist($regime);
+            }
+            // Ajouter la recette à chaque allergie sélectionnée
+            foreach ($selectedAllergies as $allergie) {
+                $allergie->addRecette($recette);
+                $entityManager->persist($allergie);
+            }
+            $entityManager->flush();
+            return $this->redirectToRoute('app_recette_index');
         }
-
-        // Ajouter la recette à chaque allergie sélectionnée
-        foreach ($selectedAllergies as $allergie) {
-            $allergie->addRecette($recette);
-            $entityManager->persist($allergie);
-        }
-
-        $entityManager->flush();
-
-        return $this->redirectToRoute('app_recette_index');
+        return $this->render('recette/new.html.twig', [
+            'recette' => $recette,
+            'form' => $form->createView(),
+        ]);
     }
-    return $this->render('recette/new.html.twig', [
-        'recette' => $recette,
-        'form' => $form->createView(),
-    ]);
-}
 
-    
     #[Route('/{id}', name: 'app_recette_show', methods: ['GET'])]
     public function show(Recette $recette): Response
     {
@@ -118,12 +111,12 @@ class RecetteController extends AbstractController
     {
         $form = $this->createForm(RecetteType::class, $recette);
         $form->handleRequest($request);
-    
+
         if ($form->isSubmitted() && $form->isValid()) {
             // Récupérer les régimes et les allergies sélectionnés depuis le formulaire
             $selectedRegimes = $form->get('regimes')->getData();
             $selectedAllergies = $form->get('allergies')->getData();
-    
+
             // Sauvegarder la recette
             $recetteRepository->saveRecette($recette);
 
@@ -138,10 +131,10 @@ class RecetteController extends AbstractController
                 $allergie->addRecette($recette);
                 $recetteRepository->saveAllergie($allergie);
             }
-    
+
             return $this->redirectToRoute('app_recette_index', [], Response::HTTP_SEE_OTHER);
         }
-    
+
         return $this->render('recette/edit.html.twig', [
             'recette' => $recette,
             'form' => $form,

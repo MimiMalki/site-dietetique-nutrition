@@ -4,30 +4,29 @@
 {% endblock %}
 
 
-
-
 {% block body %}
-<style>
+	<style>
 
-.rating {
-    text-align: center;
-    color: black;
-}
-.star {
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: color 0.2s;
-}
+		.rating {
+			text-align: center;
+			color: black;
+		}
+		.star {
+			font-size: 1.5rem;
+			cursor: pointer;
+			transition: color 0.2s;
+		}
 
-.star.active {
-    color: gold;
-}
-#form_note {
-  display: none;
-}#form_note {
-  visibility: hidden;
-}
-</style>
+		.star.active {
+			color: gold;
+		}
+		#form_note {
+			display: none;
+		}
+		#form_note {
+			visibility: hidden;
+		}
+	</style>
 
 	<h1>Recette</h1>
 
@@ -82,36 +81,52 @@
 	<button type="submit">Soumettre l'avis</button>
 	{{ form_end(form) }}
 
-<script>
+	<h2>Other Recipes</h2>
+	<ul>
+		{# {% for recipe in otherRecipes %}
+				    <li>{{ recipe.titre }}</li>
+				    {% endfor %} #}
+		{% set counter = 0 %}
+		{% for recipe in otherRecipes %}
+			{% if counter < 6 %}
+				<img src="{{ vich_uploader_asset(recipe, 'imageFile') }}" alt="{{ recipe.imageName }}" class="card shadow-sm max-h-60 object-cover"/>
+				{% set  counter = counter + 1 %}
+			{% endif %}
+			{# <img id="img_list" class="imageRecette" src="{{ vich_uploader_asset(recipe, 'imageFile') }}" width="240" height="170" alt="{{ recipe.image }}"> #}
+		{% endfor %}
+	</ul>
+	<script>
 
-// Sélectionnez toutes les étoiles
+		// Sélectionnez toutes les étoiles
 const stars = document.querySelectorAll('.star');
 // Récupérez le champ de note du formulaire
 const noteField = document.getElementById('form_note');
 
-  // Ajoutez un écouteur d'événement à chaque étoile
+// Ajoutez un écouteur d'événement à chaque étoile
 stars.forEach(star => {
-    star.addEventListener('click', () => {
-      // Récupérez la valeur de l'étoile cliquée
-    const rating = star.dataset.rating;
+star.addEventListener('click', () => { // Récupérez la valeur de l'étoile cliquée
+const rating = star.dataset.rating;
 
-      // Mettez à jour l'affichage des étoiles
-    updateStars(rating);
+// Mettez à jour l'affichage des étoiles
+updateStars(rating);
 
-      // Enregistrez la valeur de la note ou effectuez toute autre action souhaitée
-    saveRating(rating);
-    });
+// Mettez à jour la valeur du champ de note
+noteField.value = rating;
+
+// Enregistrez la valeur de la note ou effectuez toute autre action souhaitée
+saveRating(rating);
+});
 });
 
-  // Fonction pour mettre à jour l'affichage des étoiles
+// Fonction pour mettre à jour l'affichage des étoiles
 function updateStars(rating) {
-    stars.forEach(star => {
+stars.forEach(star => {
 if (star.dataset.rating <= rating) {
-        star.classList.add('active');
+star.classList.add('active');
 } else {
-        star.classList.remove('active');
+star.classList.remove('active');
 }
-    });
+});
 }
-</script>
+	</script>
 {% endblock %}

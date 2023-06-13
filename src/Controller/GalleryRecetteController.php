@@ -34,62 +34,24 @@ class GalleryRecetteController extends AbstractController
     #[Route('/', name: 'app_gallery_recette')]
     public function view(RecetteRepository $recetteRepository, AvisRepository $avisRepository, EntityManagerInterface $entityManager): Response
     {
-        // // Récupérer l'utilisateur connecté (le patient)
-        // $patient = $this->getUser();
-
-
-        // if ($patient instanceof User) {
-        //     // Filtrer les recettes selon le régime et les allergies du patient
-        //     $recettes = $this->filtrerRecettesParRegimeEtAllergenes($patient);
-
-        //     // Afficher les recettes dans la vue appropriée
-        //     return $this->render('gallery_recette/index.html.twig', [
-        //         'recettes' => $recettes,
-        //     ]);
-        // }
-
-        // return $this->render('gallery_recette/index.html.twig', [
-        //     'recettes' => $recetteRepository->findAll(),
-        // ]);
+        // Récupérer l'utilisateur connecté (le patient)
+        $patient = $this->getUser();
         $recettes = $recetteRepository->findAll();
-        // // Récupérer les notes liées à chaque recette
-        // $recetteNotes = [];
-        // foreach ($recettes as $recette) {
-        //     $notes = $avisRepository->findBy(['recette' => $recette]);
-        //     $recetteNotes[$recette->getId()] = $notes;
+        if ($patient instanceof User) {
+            // Filtrer les recettes selon le régime et les allergies du patient
+            $recettes = $this->filtrerRecettesParRegimeEtAllergenes($patient);
+        } 
+        // else {
+        //     // Récupérer toutes les recettes accessibles à tous les visiteurs
+        //     $recettes = $recetteRepository->findBy(['accessiblePatient' => false]);
         // }
-
-        // return $this->render('gallery_recette/index.html.twig', [
-        //     'recettes' => $recettes,
-        //     'recetteNotes' => $recetteNotes,
-        // ]);
-        // Calculer la moyenne des notes pour chaque recette
-        $recetteAverages = [];
-        foreach ($recettes as $recette) {
-            $avis = $recette->getAvis();
-            $totalNotes = count($avis);
-            $sumNotes = 0;
-
-            foreach ($avis as $avisItem) {
-                $sumNotes += $avisItem->getNote();
-            }
-
-            if ($totalNotes > 0) {
-                $average = $sumNotes / $totalNotes;
-            } else {
-                $average = 0;
-            }
-
-            $recetteAverages[$recette->getId()] = $average;
-        }
-
+        // Afficher les recettes dans la vue appropriée
         return $this->render('gallery_recette/index.html.twig', [
             'recettes' => $recettes,
-            'recetteAverages' => $recetteAverages,
         ]);
     }
     #[Route('/{id}', name: 'app_gallery_recette_show', methods: ['GET', 'POST'])]
-    public function show(Recette $recette, Request $request): Response
+    public function show(Recette $recette, Request $request, RecetteRepository $recetteRepository): Response
     {
 
         // Récupérer l'utilisateur connecté (le patient)
@@ -112,10 +74,30 @@ class GalleryRecetteController extends AbstractController
             $this->entityManager->persist($avis);
             $this->entityManager->flush();
         }
+        // Récupérer l'utilisateur connecté (le patient)
+        $patient = $this->getUser();
+        // $recettes = $recetteRepository->findAll();
+        if ($patient instanceof User) {
+            // Filtrer les recettes selon le régime et les allergies du patient
+            $recettes = $this->filtrerRecettesParRegimeEtAllergenes($patient);
+        } else {
+            // Récupérer toutes les recettes accessibles à tous les visiteurs
+            $recettes = $recetteRepository->findBy(['accessiblePatient' => false]);
+        }
+        // return $this->render('gallery_recette/show.html.twig', [
+        //     'recette' => $recette,
+        //     'form' => $form->createView(),
+
+        // 
+        // 
+        // Get other recipes that come after the current recipe
+        $otherRecipes = $recetteRepository->findRecipesAfter($recette);
+
         return $this->render('gallery_recette/show.html.twig', [
             'recette' => $recette,
+            'recettes' => $recettes,
             'form' => $form->createView(),
-
+            'otherRecipes' => $otherRecipes,
         ]);
     }
     public function filtrerRecettesParRegimeEtAllergenes(User $patient)

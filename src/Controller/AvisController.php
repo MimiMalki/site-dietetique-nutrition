@@ -9,17 +9,38 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Knp\Component\Pager\PaginatorInterface;
+use Knp\Component\Pager\Pagination\PaginationInterface;
 #[Route('/avis')]
 class AvisController extends AbstractController
 {
     #[Route('/', name: 'app_avis_index', methods: ['GET'])]
-    public function index(AvisRepository $avisRepository): Response
-    {
-        return $this->render('avis/index.html.twig', [
-            'avis' => $avisRepository->findAll(),
-        ]);
-    }
+    
+    public function index(AvisRepository $avisRepository, Request $request, PaginatorInterface $paginator): Response
+{
+    // Configurez le nombre d'avis à afficher par page
+    $pageSize = 5;
+
+    // Créer la requête pour récupérer les avis triés par ID croissant
+    $query = $avisRepository->createQueryBuilder('a')
+        ->orderBy('a.id', 'ASC')
+        ->getQuery();
+
+    // Obtenir les résultats de la requête
+    $results = $query->getResult();
+
+    // Paginer les résultats
+    $pagination = $paginator->paginate(
+        $results,
+        $request->query->getInt('page', 1), // Numéro de page par défaut
+        $pageSize // Nombre d'éléments par page
+    );
+
+    return $this->render('avis/index.html.twig', [
+        'pagination' => $pagination,
+    ]);
+}
+
 
     #[Route('/new', name: 'app_avis_new', methods: ['GET', 'POST'])]
     public function new(Request $request, AvisRepository $avisRepository): Response

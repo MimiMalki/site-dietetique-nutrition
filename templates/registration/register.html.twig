@@ -5,6 +5,15 @@
 
 {% block stylesheets %}
 	{{ encore_entry_link_tags('app') }}
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Courgette &family=Dancing+Script:wght@400;500;600;700&family=Noto+Sans:ital, wght@0, 100;0, 200;0, 300;0, 400;0, 500;0, 700;0, 800;0, 900;1, 100;1, 200;1, 300;1, 400;1, 500;1, 600;1, 700;1, 800;1, 900&display=swap');
+
+		h1 {
+			text-align: center;
+			color: #c52126;
+			font-family: 'Courgette', cursive;
+		}
+	</style>
 {% endblock %}
 
 {% block body %}
@@ -12,21 +21,22 @@
 	<div
 		class="container">
 		<!-- Section: Design Block -->
-		<section class="mb-32 text-gray-800 text-center lg:text-left">
+		<section class="mb-6 text-gray-800 text-center lg:text-left">
 			<div class=" md:px-12" style="">
 				<div class="grid lg:grid-cols-2 gap-12 flex items-center">
-					<div class="mt-12 lg:mt-0">
-						<h1 class="text-5xl font-bold tracking-tight leading-tight mb-12">
+
+					<div class="mt-12 lg:mt-0 ">
+						<h1 class="text-6xl font-bold tracking-tight leading-tight mb-12">
 							Ajouter un nouveau
-							<br/><span class="text-red-600">patient</span>
+							<br/><span class="text-6xl">patient</span>
 						</h1>
-						<div class="mb-4">
-							<img src="build/images/img2.jpg" class="h-auto max-w-full rounded-full text-center" style="width :400px " alt=""/>
+						<div class="mb-2">
+							<img src="build/images/img2.jpg" class="h-auto max-w-full rounded-full text-center" style="width :350px " alt=""/>
 						</div>
 					</div>
-					<div class="mb-12 lg:mb-0">
-						<div class="block rounded-lg shadow-lg bg-white px-6 py-12 md:px-12">
 
+					<div class="mb-4 lg:mb-0">
+						<div class="block rounded-lg shadow-lg bg-white px-6 py-6 md:px-12">
 							<div class="form-control">
 								<form method="post">
 									{{ form_start(registrationForm)}}
@@ -58,42 +68,46 @@
 										<label for="exampleInput123" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary" placeholder="Email">Email
 										</label>
 									</div>
+
 									<!--Password input-->
 									<div class="relative mb-6" data-te-input-wrapper-init>
 										{{ form_widget(registrationForm.plainPassword, { 'attr': {'class': 'peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0'} }) }}
 										<label for="exampleInput123" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary" placeholder="Mot de passe">Mot de passe
 										</label>
 									</div>
-									<!--Allergies input-->
-									<div class="relative mb-6" data-te-input-wrapper-init>
-									<label for="exampleInput123" class="pointer-events-none left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary" placeholder="Allergies">Allergies
-										</label>
-										{{ form_widget(registrationForm.allergies, {
+									<div
+										class="grid lg:grid-cols-2 m-4">
+										<!--Allergies input-->
+										<div class="relative mb-6" data-te-input-wrapper-init>
+											<label for="exampleInput123" class=" px-3 pointer-events-none left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary" placeholder="Allergies">Allergies
+											</label>
+											{{ form_widget(registrationForm.allergies, {
 											'attr': {
-												'class': 'peer block min-h-[auto] w-full rounded border-0 bg-transparent px-5 py-[0.5rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0',
+												'class': 'peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.5rem] leading-[1.8] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0',
 												'name': 'allergies[]',
 												'multiple': 'multiple'
 											}
 										}) }}
-										
-									</div>
-									{# <div class="relative mb-6" data-te-input-wrapper-init>
-																			{{ form_widget(registrationForm.allergies, { 'attr': {'class': 'peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0'} }) }}
-																			<label for="exampleInput123" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary" placeholder="Allergies">Allergies
-																			</label>
-																		</div> #}
-									<!--Regimes input-->
-									<div class="relative" data-te-input-wrapper-init>
-									<label for="exampleInput123" class="pointer-events-none  left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary" placeholder="Allergies">Régimes
+
+										</div>
+										{# <div class="relative mb-6" data-te-input-wrapper-init>
+										{{ form_widget(registrationForm.allergies, { 'attr': {'class': 'peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0'} }) }}
+										<label for="exampleInput123" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary" placeholder="Allergies">Allergies
 										</label>
-										{{ form_widget(registrationForm.regimes, { 'attr': {'class': 'peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0'} }) }}
-										
-									</div>
-									<div class="form-check flex justify-center mb-6">
-										{{ form_widget(registrationForm.agreeTerms, { 'attr': {'class': 'relative float-left -ml-[1.5rem] mr-[6px] h-[1.125rem] w-[1.125rem] border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0'} }) }}
-										<label class="inline-block pl-[0.15rem] hover:cursor-pointer" for="exampleCheck25">
-											Accepter nos termes
-										</label>
+										</div> #}
+										<!--Regimes input-->
+										<div class="relative" data-te-input-wrapper-init>
+											<label for="exampleInput123" class="pointer-events-none  left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] px-5 leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary" placeholder="Allergies">Régimes
+											</label>
+											{{ form_widget(registrationForm.regimes, { 'attr': {'class': 'peer block min-h-[auto] w-full rounded border-0 bg-transparent px-5 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0'} }) }}
+										</div>
+										<!--check termes input-->
+										<div class="form-check mb-6">
+											{{ form_widget(registrationForm.agreeTerms, { 'attr': {'class': 'relative float-left -ml-[1.5rem] mr-[6px] h-[1.125rem] w-[1.125rem] border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0'} }) }}
+											<label class="inline-block pl-[0.15rem] hover:cursor-pointer" for="exampleCheck25">
+												Accepter nos termes
+											</label>
+										</div>
 									</div>
 									<button type="submit" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block px-6 py-2.5 mb-6 w-full bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" style="background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);">
 										Créer
@@ -104,12 +118,10 @@
 							</div>
 						</div>
 					</div>
+
 				</div>
 			</section>
-			<!-- Section: Design Block -->
-
 		</div>
-		<!-- Container for demo purpose -->
 	{% endblock %}
 	{% block javascripts %}
 		{{ encore_entry_script_tags('app') }}

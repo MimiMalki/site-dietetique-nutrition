@@ -306,4 +306,43 @@ class Recette
     {
         return $this->titre ;
     }
+
+//     public function getTempsTotal(): ?int
+// public function getTempsTotal(): ?int
+// {
+//     $tempsPreparation = $this->tempsPrepation ?? new \DateTime('00:00');
+//     $tempsRepos = $this->tempsRepos ?? new \DateTime('00:00');
+//     $tempsCuisson = $this->tempsCuisson ?? new \DateTime('00:00');
+
+//     $intervalPreparation = $tempsPreparation->diff(new \DateTime('00:00'));
+//     $intervalRepos = $tempsRepos->diff(new \DateTime('00:00'));
+//     $intervalCuisson = $tempsCuisson->diff(new \DateTime('00:00'));
+
+//     $temptotal = $intervalPreparation->i + $intervalRepos->i + $intervalCuisson->i;
+
+//     return $temptotal;
+// }
+public function getTempsTotal(): ?string
+{
+    $tempsPreparation = $this->tempsPrepation ?? new \DateTime('00:00');
+    $tempsRepos = $this->tempsRepos ?? new \DateTime('00:00');
+    $tempsCuisson = $this->tempsCuisson ?? new \DateTime('00:00');
+
+    $totalMinutes = $tempsPreparation->format('H') * 60 + $tempsPreparation->format('i');
+    $totalMinutes += $tempsRepos->format('H') * 60 + $tempsRepos->format('i');
+    $totalMinutes += $tempsCuisson->format('H') * 60 + $tempsCuisson->format('i');
+
+    $hours = floor($totalMinutes / 60);
+    $minutes = $totalMinutes % 60;
+
+    $tempsTotal = '';
+    if ($hours > 0) {
+        $tempsTotal .= $hours . 'h ';
+    }
+    $tempsTotal .= $minutes . 'min';
+
+    return $tempsTotal;
+}
+
+
 }

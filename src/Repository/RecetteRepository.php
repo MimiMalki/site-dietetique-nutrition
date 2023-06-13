@@ -58,6 +58,15 @@ class RecetteRepository extends ServiceEntityRepository
         }
     }
 
+    public function findRecipesAfter(Recette $recette)
+    {
+        return $this->createQueryBuilder('r')
+            ->where('r.id > :id')
+            ->setParameter('id', $recette->getId())
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Recette[] Returns an array of Recette objects
 //     */

@@ -1,37 +1,85 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Avis index{% endblock %}
-
-{% block body %}
-    <h1>Avis index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Note</th>
-                <th>Commentaire</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for avi in avis %}
-            <tr>
-                <td>{{ avi.id }}</td>
-                <td>{{ avi.note }}</td>
-                <td>{{ avi.commentaire }}</td>
-                <td>
-                    <a href="{{ path('app_avis_show', {'id': avi.id}) }}">show</a>
-                    <a href="{{ path('app_avis_edit', {'id': avi.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_avis_new') }}">Create new</a>
+{% block title %}Avis index
 {% endblock %}
+{% block stylesheets %}
+	{{ encore_entry_link_tags('app') }}
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Courgette &family=Dancing+Script:wght@400;500;600;700&family=Noto+Sans:ital, wght@0, 100;0, 200;0, 300;0, 400;0, 500;0, 700;0, 800;0, 900;1, 100;1, 200;1, 300;1, 400;1, 500;1, 600;1, 700;1, 800;1, 900&display=swap');
+
+		h1 {
+			text-align: center;
+			color: #c52126;
+			font-family: 'Courgette', cursive;
+		}
+		.container{
+			color:#c52126;
+		}
+	</style>
+{% endblock %}
+{% block body %}
+	<div class="text-center">
+		<h1 class="mb-6">Liste des avis</h1>
+	</div>
+
+	<div class="flex justify-center">
+		<div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+			<div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+				<div class="overflow-hidden">
+					<table class="min-w-full text-center text-sm font-light bordered-table table-with-margin">
+						<thead class="border-b font-medium dark:border-neutral-500">
+							<tr>
+								<th scope="col" class="px-6 py-4">Id</th>
+								<th scope="col" class="px-6 py-4">Note</th>
+								<th scope="col" class="px-6 py-4">Commentaire</th>
+								<th scope="col" class="px-6 py-4">actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for avi in pagination %}
+								<tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:b">
+									<td class="whitespace-nowrap px-6 py-4 font-medium">
+										{{ avi.id }}
+									</td>
+									<td class="whitespace-nowrap px-6 py-4">{{ avi.note }}</td>
+									<td class="whitespace-nowrap px-6 py-4">{{ avi.commentaire }}</td>
+									<td>
+										<a class="mb-2 px-6 py-2.5 text-xl text-light" href="{{ path('app_avis_show', {'id': avi.id}) }}">
+											<i class="fa-solid fa-eye"></i>
+										</a>
+										<a class=" mb-2 px-6 py-2.5 text-xl text-danger " href="{{ path('app_avis_delete', {'id': avi.id}) }}">
+											<i class="fa-solid fa-trash"></i>
+										</a>
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="4">no records found</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Pagination -->
+
+	{# <nav aria-label="Page navigation example">
+			  	<ul class="list-style-none flex">
+			{{ knp_pagination_render(pagination, '_components/_pagination.html.twig') }}
+			  	</ul>
+			</nav> #}
+
+	{# <nav class="pagination">
+				<ul class="pagination-list">
+					{{ knp_pagination_render(pagination) }}
+				</ul>
+			</nav> #}
+		{# <div class="container">
+			<div class="row">
+				<div class=" flex justify-center"> {{ knp_pagination_render(pagination) }}
+			</div>
+		</div> #}
+						{% include "_components/_pagination.html.twig" %}
+	{% endblock %}
