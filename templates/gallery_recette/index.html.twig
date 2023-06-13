@@ -5,24 +5,19 @@
 
 {% block body %}
 	<style>
-		/* .my-class {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    } */
+	@import url('https://fonts.googleapis.com/css2?family=Courgette &family=Dancing+Script:wght@400;500;600;700&family=Noto+Sans:ital, wght@0, 100;0, 200;0, 300;0, 400;0, 500;0, 700;0, 800;0, 900;1, 100;1, 200;1, 300;1, 400;1, 500;1, 600;1, 700;1, 800;1, 900&display=swap');
 
+		h1 {
+			text-align: center;
+			color: #ea5e5e;
+			
+		}
 		.my-class img {
 			top: 0;
 			left: 0;
 			width: 100%;
-			/* height: 100%; */
 			object-fit: cover;
 		}
-		/* p{
-		font-size: 12px;
-	} */
-
 	</style>
 	<div class="texte text-center">
 		<h1 class="title">TOUTES LES RECETTES</h1>
@@ -31,7 +26,7 @@
 		<div class="container mx-auto px-5 py-2 lg:px-32 lg:pt-12">
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 				{% for recette in recettes %}
-					{# <div class=""> #}
+					
 					<a class="mb-6 rounded-lg bg-white  shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700" href="{{ path('app_gallery_recette_show', { 'id': recette.id }) }}">
 						<div class="p-6 text-white rounded-tl-lg rounded-tr-lg" style="background: rgb(234, 94, 94);">
 							<div class="mb-6 flex justify-between">
@@ -76,7 +71,6 @@
 														<img src="{{ vich_uploader_asset(recette, 'imageFile') }}" alt="{{ recette.imageName }}" class=" rounded-t-lg card shadow-sm max-h-40 object-contain"/>
 													</div> #}
 					</a>
-					{# </div> #}
 				{% endfor %}
 			</div>
 		</div>
