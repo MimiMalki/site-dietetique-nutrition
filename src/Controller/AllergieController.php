@@ -9,16 +9,38 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 #[Route('/allergie')]
 class AllergieController extends AbstractController
 {
     #[Route('/', name: 'app_allergie_index', methods: ['GET'])]
-    public function index(AllergieRepository $allergieRepository): Response
+    public function index(AllergieRepository $allergieRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        return $this->render('allergie/index.html.twig', [
-            'allergies' => $allergieRepository->findAll(),
-        ]);
+        // Configurez le nombre d'avis à afficher par page
+    $pageSize = 5;
+
+    // Créer la requête pour récupérer les avis triés par ID croissant
+    $query = $allergieRepository->createQueryBuilder('a')
+        ->orderBy('a.id', 'ASC')
+        ->getQuery();
+
+    // Obtenir les résultats de la requête
+    $results = $query->getResult();
+
+    // Paginer les résultats
+    $pagination = $paginator->paginate(
+        $results,
+        $request->query->getInt('page', 1), // Numéro de page par défaut
+        $pageSize // Nombre d'éléments par page
+    );
+
+    return $this->render('allergie/index.html.twig', [
+        'pagination' => $pagination,
+    ]);
+        // return $this->render('allergie/index.html.twig', [
+        //     'allergies' => $allergieRepository->findAll(),
+        // ]);
     }
 
     #[Route('/new', name: 'app_allergie_new', methods: ['GET', 'POST'])]

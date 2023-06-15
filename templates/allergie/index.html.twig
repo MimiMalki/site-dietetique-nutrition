@@ -1,35 +1,94 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Allergie index{% endblock %}
+{% block title %}Allergie index
+{% endblock %}
 
 {% block body %}
-    <h1>Allergie index</h1>
+	<style>
+		h1 {
+			text-align: center;
+			color: #c52126;
+			font-family: 'Courgette', cursive;
+		}
+	</style>
+	<div class="text-center">
+		<h1 class="mb-6">Liste des allergies</h1>
+        <a class="font-medium" href="{{ path('app_allergie_new') }}" style="color: #4e8016">
+			<i class="fa-solid fa-plus"></i>
+			Ajouter une allergie
+		</a>
+	</div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for allergie in allergies %}
-            <tr>
-                <td>{{ allergie.id }}</td>
-                <td>{{ allergie.nom }}</td>
-                <td>
-                    <a href="{{ path('app_allergie_show', {'id': allergie.id}) }}">show</a>
-                    <a href="{{ path('app_allergie_edit', {'id': allergie.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<div class="flex justify-center">
+		<div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+			<div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+				<div class="overflow-hidden">
+					<table class="min-w-full text-center text-sm font-light bordered-table table-with-margin">
+						<thead class="border-b font-medium dark:border-neutral-500">
+							<tr>
+								<th scope="col" class="px-6 py-4">Id</th>
+								<th scope="col" class="px-6 py-4">Nom</th>
+								<th scope="col" class="px-6 py-4">actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for allergie in pagination %}
+								<tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:b">
+									<td class="whitespace-nowrap px-6 py-4 font-medium">
+										{{ allergie.id }}
+									</td>
+									<td class="whitespace-nowrap px-6 py-4">{{ allergie.nom }}</td>
+									<td>
+										{# <a class="mb-2 px-6 py-2.5 text-xl text-light" href="{{ path('app_allergie_show', {'id': allergie.id}) }}">
+											<i class="fa-solid fa-eye"></i>
+										</a> #}
+										<a class="mb-2 px-6 py-2.5 text-xl text-success" href="{{ path('app_allergie_edit', {'id': allergie.id}) }}">
+											<i class="fa-solid fa-pen-to-square"></i>
+										</a>
+										<a class=" mb-2 px-6 py-2.5 text-xl text-danger " href="{{ path('app_allergie_delete', {'id': allergie.id}) }}">
+											<i class="fa-solid fa-trash"></i>
+										</a>
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="4">no records found</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% include "_components/_pagination.html.twig" %}
+	{# <h1>Allergie index</h1>
+	
+	    <table class="table">
+	        <thead>
+	            <tr>
+	                <th>Id</th>
+	                <th>Nom</th>
+	                <th>actions</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	        {% for allergie in allergies %}
+	            <tr>
+	                <td>{{ allergie.id }}</td>
+	                <td>{{ allergie.nom }}</td>
+	                <td>
+	                    <a href="{{ path('app_allergie_show', {'id': allergie.id}) }}">show</a>
+	                    <a href="{{ path('app_allergie_edit', {'id': allergie.id}) }}">edit</a>
+	                </td>
+	            </tr>
+	        {% else %}
+	            <tr>
+	                <td colspan="3">no records found</td>
+	            </tr>
+	        {% endfor %}
+	        </tbody>
+	    </table> #}
 
-    <a href="{{ path('app_allergie_new') }}">Create new</a>
+
 {% endblock %}
