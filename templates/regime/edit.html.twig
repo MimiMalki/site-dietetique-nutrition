@@ -3,11 +3,30 @@
 {% block title %}Edit Regime{% endblock %}
 
 {% block body %}
-    <h1>Edit Regime</h1>
+<style>
+		h1 {
+			text-align: center;
+			color: #ea5e5e;
+			
+		}
+		a {
+			color: #92c83e;
+		}
+	</style>
+    
+    <h1 class="text-center">Modifier le régime</h1>
+<div class="flex items-center justify-between mr-12">
+    <a class="m-12" href="{{ path('app_regime_index') }}"><i class="fa-solid fa-arrow-left"></i> Retour à la liste des régimes</a>
+   <div class="mr-12">
+        {{ include('regime/_delete_form.html.twig') }}
+    </div>
+</div>
+    {{ include('regime/_form.html.twig', {'button_label': 'Modifier'}) }}
+    {# <h1>Edit Regime</h1>
 
     {{ include('regime/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('app_regime_index') }}">back to list</a>
 
-    {{ include('regime/_delete_form.html.twig') }}
+    {{ include('regime/_delete_form.html.twig') }} #}
 {% endblock %}

@@ -66,6 +66,16 @@ class RecetteRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+    public function showRecette(Recette $recette, RecetteRepository $recetteRepository)
+    {
+        // Récupérer les recettes suivantes à partir du Repository
+        $recettesSuivantes = $recetteRepository->findRecipesAfter($recette);
+    
+        return $this->render('votre_template.html.twig', [
+            'recette' => $recette,
+            'recettesSuivantes' => $recettesSuivantes,
+        ]);
+    }
 
 //    /**
 //     * @return Recette[] Returns an array of Recette objects

@@ -1,9 +1,9 @@
-<nav class="flex-no-wrap relative flex w-full items-center justify-between bg-neutral-100 py-2 shadow-md shadow-black/5 dark:bg-neutral-600 dark:shadow-black/10 lg:flex-wrap lg:justify-start lg:py-4" data-te-navbar-ref>
+<nav class=" bg-neutral-100 py-2 shadow-md shadow-black/5 dark:bg-neutral-600 dark:shadow-black/10 lg:flex-wrap lg:justify-start lg:py-4" data-te-navbar-ref>
 	<div
-		class="flex w-full flex-wrap items-center justify-between px-3">
+		class=" grid grid-cols-8 gap-8 px-8 flex flex-wrap-reverse md:flex-wrap-reverse">
 		<!-- Hamburger button for mobile view -->
 		<button
-			class="block border-0 bg-transparent px-2 text-neutral-500 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden" type="button" data-te-collapse-init data-te-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
+			class="flex mt-8 border-0 bg-transparent px-2 text-neutral-500 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden" type="button" data-te-collapse-init data-te-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
 			<!-- Hamburger icon -->
 			<span class="[&>svg]:w-7">
 				<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="currentColor" class="h-7 w-7">
@@ -11,11 +11,10 @@
 				</svg>
 			</span>
 		</button>
+		<!--  navigation links -->
 		<div
-			class="!visible hidden flex-grow basis-[100%] items-center lg:!flex lg:basis-auto" id="navbarSupportedContent1" data-te-collapse-item>
-
-			<!-- Left navigation links -->
-			<ul class="list-style-none mr-auto flex flex-col pl-0 lg:flex-row" data-te-navbar-nav-ref>
+			class=" mt-12 !visible hidden flex-grow basis-[100%]  items-center lg:!flex lg:basis-auto" id="navbarSupportedContent1" data-te-collapse-item>
+			<ul class="list-style-none mr-auto flex flex-col pl-0 lg:flex-row justify-center" data-te-navbar-nav-ref>
 				{% if app.user %}
 					<li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
 						<a class="inline-block px-4 py-2 mb-2 md:mb-0 mr-0 md:mr-2 bg-red-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" href="{{ path('app_logout') }}" role="button">
@@ -34,7 +33,7 @@
 				</li>
 				<li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
 					<div class="relative" data-te-dropdown-ref>
-						<button class="flex items-center whitespace-nowrap rounded bg-success px-6 pb-1 pt-2.5 text-m  font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] motion-reduce:transition-none"style="background-color: #92c83e;" type="button" id="dropdownMenuButton5" data-te-dropdown-toggle-ref aria-expanded="false" data-te-ripple-init data-te-ripple-color="light">
+						<button class="flex items-center whitespace-nowrap rounded bg-success px-6 pb-1 pt-2.5 text-m  font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] motion-reduce:transition-none" style="background-color: #92c83e;" type="button" id="dropdownMenuButton5" data-te-dropdown-toggle-ref aria-expanded="false" data-te-ripple-init data-te-ripple-color="light">
 							Gestion des patients
 							<span class="ml-2 w-2">
 								<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" class="h-5 w-5">
@@ -54,7 +53,7 @@
 						</ul>
 					</div>
 				</li>
-                <li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
+				<li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
 					<div class="relative" data-te-dropdown-ref>
 						<button class="flex items-center whitespace-nowrap rounded bg-success px-6 pb-1 pt-2.5 text-m font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] motion-reduce:transition-none" style="background-color: #92c83e;" type="button" id="dropdownMenuButton5" data-te-dropdown-toggle-ref aria-expanded="false" data-te-ripple-init data-te-ripple-color="light">
 							Gestion des recettes
@@ -76,7 +75,51 @@
 						</ul>
 					</div>
 				</li>
-                <li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
+				<li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
+					<div class="relative" data-te-dropdown-ref>
+						<button class="flex items-center whitespace-nowrap rounded bg-success px-6 pb-1 pt-2.5 text-m  font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] motion-reduce:transition-none" style="background-color: #92c83e;" type="button" id="dropdownMenuButton5" data-te-dropdown-toggle-ref aria-expanded="false" data-te-ripple-init data-te-ripple-color="light">
+							Gestion des allergies
+							<span class="ml-2 w-2">
+								<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" class="h-5 w-5">
+									<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+								</svg>
+							</span>
+						</button>
+						<ul class="absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-neutral-700 [&[data-te-dropdown-show]]:block" aria-labelledby="dropdownMenuButton1" data-te-dropdown-menu-ref>
+							<li>
+								<a class="block w-full whitespace-nowrap bg-transparent px-14 py-2 text-m font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600" href="{{ path('app_allergie_new') }}" data-te-dropdown-item-ref>
+									Ajouter une allergie</a>
+							</li>
+							<li>
+								<a class="block w-full whitespace-nowrap bg-transparent px-14 py-2 text-m font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600" href="{{ path('app_allergie_index') }}" data-te-dropdown-item-ref>
+									Liste des allergies</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+				<li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
+					<div class="relative" data-te-dropdown-ref>
+						<button class="flex items-center whitespace-nowrap rounded bg-success px-6 pb-1 pt-2.5 text-m  font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] motion-reduce:transition-none" style="background-color: #92c83e;" type="button" id="dropdownMenuButton5" data-te-dropdown-toggle-ref aria-expanded="false" data-te-ripple-init data-te-ripple-color="light">
+							Gestion des régimes
+							<span class="ml-2 w-2">
+								<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" class="h-5 w-5">
+									<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+								</svg>
+							</span>
+						</button>
+						<ul class="absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-neutral-700 [&[data-te-dropdown-show]]:block" aria-labelledby="dropdownMenuButton1" data-te-dropdown-menu-ref>
+							<li>
+								<a class="block w-full whitespace-nowrap bg-transparent px-14 py-2 text-m font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600" href="{{ path('app_regime_new') }}" data-te-dropdown-item-ref>
+									Ajouter un régime</a>
+							</li>
+							<li>
+								<a class="block w-full whitespace-nowrap bg-transparent px-14 py-2 text-m font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600" href="{{ path('app_regime_index') }}" data-te-dropdown-item-ref>
+									Liste des régimes</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+				<li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
 					<div class="relative" data-te-dropdown-ref>
 						<button class="flex items-center whitespace-nowrap rounded bg-success px-6 pb-1 pt-2.5 text-m font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] motion-reduce:transition-none" style="background-color: #92c83e;" type="button" id="dropdownMenuButton5" data-te-dropdown-toggle-ref aria-expanded="false" data-te-ripple-init data-te-ripple-color="light">
 							Gestion des avis
@@ -94,23 +137,21 @@
 						</ul>
 					</div>
 				</li>
+			</ul>
+		</div>
+		<!-- logo -->
+		<div
+			class="col-start-5 col-span-5 mb-12  md:col-start-4  md:col-span-4 hover:col-start-4  hover:col-span-4">
+			<!-- Second dropdown container -->
+			<div
+				class="relative mb-12 " data-te-dropdown-ref>
+				<!-- Logo -->
+				<a class="text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:mb-0 lg:mt-0" href="#">
+					<img src={{asset('assets/images/logo.png')}} style="height: 100px; " alt="" loading="lazy"/>
+				</a>
+				{# 'build/images/logo.png' #}
+				<!-- Second dropdown menu -->
 			</div>
-		</li>
-	</ul>
-<!-- Right elements -->
-<div
-	class="relative flex items-center">
-	<!-- Second dropdown container -->
-	<div
-		class="relative" data-te-dropdown-ref>
-		<!-- Logo -->
-		<a class="mb-4 mr-2 mt-3 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:mb-0 lg:mt-0" href="#">
-			<img src={{asset('assets/images/logo.png')}} style="height: 90px" alt="" loading="lazy"/>
-		</a>
-		{# 'build/images/logo.png' #}
-		<!-- Second dropdown menu -->
+		</div>
 	</div>
-</div>
-
-
-</div></nav>
+</nav>

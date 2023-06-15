@@ -3,6 +3,26 @@
 {% block title %}Edit Allergie{% endblock %}
 
 {% block body %}
+
+<style>
+		h1 {
+			text-align: center;
+			color: #ea5e5e;
+			
+		}
+		a {
+			color: #92c83e;
+		}
+	</style>
+    
+    <h1 class="text-center">Modifier l'allergie</h1>
+<div class="flex items-center justify-between mr-12">
+    <a class="m-12" href="{{ path('app_allergie_index') }}"><i class="fa-solid fa-arrow-left"></i> Retour à la liste des allergies</a>
+   <div class="mr-12">
+        {{ include('allergie/_delete_form.html.twig') }}
+    </div>
+</div>
+    {{ include('allergie/_form.html.twig', {'button_label': 'Modifier'}) }}
     <h1>Edit Allergie</h1>
 
     {{ include('allergie/_form.html.twig', {'button_label': 'Update'}) }}

@@ -98,6 +98,7 @@ class GalleryRecetteController extends AbstractController
             'recettes' => $recettes,
             'form' => $form->createView(),
             'otherRecipes' => $otherRecipes,
+
         ]);
     }
     public function filtrerRecettesParRegimeEtAllergenes(User $patient)

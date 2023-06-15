@@ -44,7 +44,7 @@ class Recette
     #[ORM\Column(length: 255)]
     private ?string $ingredients = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 1000)]
     private ?string $etapes = null;
 
     // #[ORM\Column(length: 255)]
