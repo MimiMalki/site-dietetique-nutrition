@@ -1,11 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Regime{% endblock %}
+{% block title %}Nouveau Régime{% endblock %}
 
 {% block body %}
-    <h1>Create new Regime</h1>
 
+<style>
+		h1 {
+			text-align: center;
+			color: #c52126;
+			font-family: 'Courgette', cursive;
+		}
+        a {
+			color: #92c83e;
+		}
+	</style>
+    <h1 class="text-center">Ajouter un régime</h1>
+<div class="flex items-center justify-between mr-12">
+    <a class="m-12" href="{{ path('app_regime_index') }}"><i class="fa-solid fa-arrow-left"></i> Retour à la liste des régimes</a>
+</div>
     {{ include('regime/_form.html.twig') }}
 
-    <a href="{{ path('app_regime_index') }}">back to list</a>
 {% endblock %}

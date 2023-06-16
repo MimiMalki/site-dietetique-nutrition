@@ -1,11 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Allergie{% endblock %}
+{% block title %}Nouvelle allergie{% endblock %}
 
 {% block body %}
-    <h1>Create new Allergie</h1>
+    <style>
+		h1 {
+			text-align: center;
+			color: #c52126;
+			font-family: 'Courgette', cursive;
+		}
+        a {
+			color: #92c83e;
+		}
+	</style>
+    <h1 class="text-center">Ajouter une allergie</h1>
+<div class="flex items-center justify-between mr-12">
+    <a class="m-12" href="{{ path('app_allergie_index') }}"><i class="fa-solid fa-arrow-left"></i> Retour à la liste des allergies</a>
+</div>
 
     {{ include('allergie/_form.html.twig') }}
 
-    <a href="{{ path('app_allergie_index') }}">back to list</a>
 {% endblock %}

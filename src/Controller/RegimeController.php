@@ -9,16 +9,38 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 #[Route('/regime')]
 class RegimeController extends AbstractController
 {
     #[Route('/', name: 'app_regime_index', methods: ['GET'])]
-    public function index(RegimeRepository $regimeRepository): Response
+    public function index(RegimeRepository $regimeRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        return $this->render('regime/index.html.twig', [
-            'regimes' => $regimeRepository->findAll(),
-        ]);
+          // Configurez le nombre d'avis à afficher par page
+    $pageSize = 5;
+
+    // Créer la requête pour récupérer les avis triés par ID croissant
+    $query = $regimeRepository->createQueryBuilder('a')
+        ->orderBy('a.id', 'ASC')
+        ->getQuery();
+
+    // Obtenir les résultats de la requête
+    $results = $query->getResult();
+
+    // Paginer les résultats
+    $pagination = $paginator->paginate(
+        $results,
+        $request->query->getInt('page', 1), // Numéro de page par défaut
+        $pageSize // Nombre d'éléments par page
+    );
+
+    return $this->render('regime/index.html.twig', [
+        'pagination' => $pagination,
+    ]);
+        // return $this->render('regime/index.html.twig', [
+        //     'regimes' => $regimeRepository->findAll(),
+        // ]);
     }
 
     #[Route('/new', name: 'app_regime_new', methods: ['GET', 'POST'])]
